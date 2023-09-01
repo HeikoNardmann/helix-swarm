@@ -1,3 +1,5 @@
+import json
+
 from typing import Dict, List, Optional, Union
 
 
@@ -202,7 +204,11 @@ class Projects:
         if minimum_up_votes:
             data['minimumUpVotes'] = minimum_up_votes
 
-        return self.swarm._request('POST', 'projects', data=data)
+        version = self.swarm.get_version()
+        if 11 in version['apiVersions']:
+            return self.swarm._request('POST', 'projects', data=json.dumps(data))
+        else:
+            return self.swarm._request('POST', 'projects', data=data)
 
     def edit(self,
              identifier: str,
