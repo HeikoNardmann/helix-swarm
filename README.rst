@@ -131,6 +131,9 @@ https://www.perforce.com/downloads/helix-swarm
 +------------+----------------+-----------------------------------------------------------------------------+
 | API        | Date           | Notes                                                                       |
 +============+================+=============================================================================+
+| `v11`_     | >= 2022.1      | Extended the v10 APIs and further standardized the endpoint and response    |
+|            |                | pattern for the new rich User Interface.Integration with CI tools           |
++------------+----------------+-----------------------------------------------------------------------------+
 | `v10`_     | October 2019   | Integration with CI tools                                                   |
 +------------+----------------+-----------------------------------------------------------------------------+
 | `v9`_      | April 2018     | Review append and replace changelist, 2fa, mark comment as read             |
@@ -156,7 +159,8 @@ https://www.perforce.com/downloads/helix-swarm
 | `v1`_      | July 2014      | Initial                                                                     |
 +------------+----------------+-----------------------------------------------------------------------------+
 
-.. _v10: https://www.perforce.com/manuals/swarm/Content/Swarm/swarm-apidoc_endpoints-v10.html
+.. _v11: https://www.perforce.com/manuals/v23.2/swarm/Content/Swarm/swarm-apidoc_endpoints-v-current.html
+.. _v10: https://www.perforce.com/manuals/v19.3/swarm/Content/Swarm/swarm-apidoc.html
 .. _v9: https://www.perforce.com/manuals/v19.1/swarm/Content/Swarm/swarm-apidoc.html
 .. _v8: https://www.perforce.com/manuals/v17.4/swarm/#Swarm/swarm-apidoc.html
 .. _v7: https://www.perforce.com/manuals/v17.3/swarm/index.html#Swarm/swarm-apidoc.html
