@@ -1,5 +1,3 @@
-import json
-
 from typing import Dict, List, Optional, Union
 
 
@@ -207,7 +205,7 @@ class Projects:
         version = self.swarm.get_version()
         if 11 in version['apiVersions']:
             return self.swarm._request('POST', 'projects', json=data)
-        
+
         return self.swarm._request('POST', 'projects', data=data)
 
     def edit(self,
