@@ -83,7 +83,10 @@ class Workflows:
                on_submit: Optional[List[str]] = None,
                end_rules: Optional[List[str]] = None,
                auto_approve: Optional[List[str]] = None,
-               counted_votes: Optional[str] = None
+               counted_votes: Optional[str] = None,
+               tests: Optional[List[dict]] = None,
+               user_exclusions: Optional[dict] = None,
+               group_exclusions: Optional[dict] = None
                ) -> dict:
         """
         Create a new workflow.
@@ -122,6 +125,16 @@ class Workflows:
                 Data for rules when counting votes up. Valid values are: `anyone`,
                 `members`.
 
+            tests (Optional[List[dict]]):
+                tbd; new since v11
+                Configuration for testing, continuous integration.
+
+            user_exclusions (Optional[dict]):
+                tbd; new since v11
+
+            group_exclusions (Optional[dict]):
+                tbd; new since v11
+
         Returns:
             dict: json response.
         """
@@ -152,6 +165,16 @@ class Workflows:
 
         version = self.swarm.get_version()
         if 11 in version['apiVersions']:
+            if tests:
+                data['tests'] = tests
+
+            if user_exclusions:
+                data['user_exclusions'] = user_exclusions
+
+            if group_exclusions:
+                data['group_exclusions'] = group_exclusions
+
+        if 11 in version['apiVersions']:
             return self.swarm._request('POST', 'workflows', json=data)
 
         return self.swarm._request('POST', 'workflows', data=data)
@@ -167,7 +190,10 @@ class Workflows:
              on_submit: Optional[dict] = None,
              end_rules: Optional[List[str]] = None,
              auto_approve: Optional[List[str]] = None,
-             counted_votes: Optional[str] = None
+             counted_votes: Optional[str] = None,
+             tests: Optional[List[dict]] = None,
+             user_exclusions: Optional[dict] = None,
+             group_exclusions: Optional[dict] = None
              ) -> dict:
         """
         Edit a workflow.
@@ -209,6 +235,15 @@ class Workflows:
                 Data for rules when counting votes up. Valid values are:
                 `anyone`, `members`.
 
+            tests (Optional[List[dict]]):
+                tbd; new since v11
+
+            user_exclusions (Optional[dict]):
+                tbd; new since v11
+
+            group_exclusions (Optional[dict]):
+                tbd; new since v11
+
         Returns:
             dict: json response.
         """
@@ -239,6 +274,17 @@ class Workflows:
 
         if counted_votes:
             data['counted_votes'] = counted_votes
+
+        version = self.swarm.get_version()
+        if 11 in version['apiVersions']:
+            if tests:
+                data['tests'] = tests
+
+            if user_exclusions:
+                data['user_exclusions'] = user_exclusions
+
+            if group_exclusions:
+                data['group_exclusions'] = group_exclusions
 
         response = self.swarm._request(
             'PATCH',
@@ -275,7 +321,10 @@ class Workflows:
                on_submit: Optional[dict] = None,
                end_rules: Optional[List[str]] = None,
                auto_approve: Optional[List[str]] = None,
-               counted_votes: Optional[str] = None
+               counted_votes: Optional[str] = None,
+               tests: Optional[List[dict]] = None,
+               user_exclusions: Optional[dict] = None,
+               group_exclusions: Optional[dict] = None
                ) -> dict:
         """
         Update a workflow. All values should be provided in the request.
@@ -318,6 +367,15 @@ class Workflows:
                 Data for rules when counting votes up. Valid values are:
                 `anyone`, `members`.
 
+            tests (Optional[List[dict]]):
+                tbd; new since v11
+
+            user_exclusions (Optional[dict]):
+                tbd; new since v11
+
+            group_exclusions (Optional[dict]):
+                tbd; new since v11
+
         Returns:
             dict: json response.
         """
@@ -346,6 +404,17 @@ class Workflows:
 
         if counted_votes:
             data['counted_votes'] = counted_votes
+
+        version = self.swarm.get_version()
+        if 11 in version['apiVersions']:
+            if tests:
+                data['tests'] = tests
+
+            if user_exclusions:
+                data['user_exclusions'] = user_exclusions
+
+            if group_exclusions:
+                data['group_exclusions'] = group_exclusions
 
         response = self.swarm._request(
             'PUT',
