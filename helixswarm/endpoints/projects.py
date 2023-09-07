@@ -77,7 +77,7 @@ class Projects:
                description: Optional[str] = None,
                is_private: Optional[bool] = None,
                deploy_config: Optional[dict] = None,
-               tests_config: Optional[dict] = None,
+               tests: Optional[dict] = None,
                branches: Optional[List[dict]] = None,
                job_view: Optional[str] = None,
                notify_commits: Optional[bool] = None,
@@ -178,8 +178,8 @@ class Projects:
         if deploy_config:
             data['deploy'] = deploy_config
 
-        if tests_config:
-            data['tests'] = tests_config
+        if tests:
+            data['tests'] = tests
 
         if branches:
             data['branches'] = branches
@@ -218,7 +218,7 @@ class Projects:
              description: Optional[str] = None,
              is_private: Optional[bool] = None,
              deploy_config: Optional[dict] = None,
-             tests_config: Optional[dict] = None,
+             tests: Optional[dict] = None,
              branches: Optional[List[dict]] = None,
              job_view: Optional[str] = None,
              notify_commits: Optional[bool] = None,
@@ -328,8 +328,8 @@ class Projects:
         if deploy_config:
             data['deploy'] = deploy_config
 
-        if tests_config:
-            data['tests'] = tests_config
+        if tests:
+            data['tests'] = tests
 
         if branches:
             data['branches'] = branches
