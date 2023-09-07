@@ -84,7 +84,9 @@ class Projects:
                notify_reviews: Optional[bool] = None,
                defaults: Optional[List[dict]] = None,
                retain_default_reviewers: Optional[bool] = None,
-               minimum_up_votes: Optional[str] = None
+               minimum_up_votes: Optional[str] = None,
+               email_flags: Optional[dict] = None,
+               workflow: Optional[int] = None
                ) -> dict:
         """
         Creates a new project.
@@ -155,6 +157,12 @@ class Projects:
             minimum_up_votes (Optional[str]):
                 Minimum number of up votes required.
 
+            email_flags (Optional[dict]):
+                tbd
+
+            workflow (Optional[int]):
+                tbd
+
         Returns:
             dict: json response.
         """
@@ -202,6 +210,12 @@ class Projects:
         if minimum_up_votes:
             data['minimumUpVotes'] = minimum_up_votes
 
+        if email_flags:
+            data['emailFlags'] = email_flags
+
+        if workflow:
+            data['workflow'] = workflow
+
         version = self.swarm.get_version()
         if 11 in version['apiVersions']:
             return self.swarm._request('POST', 'projects', json=data)
@@ -225,7 +239,9 @@ class Projects:
              notify_reviews: Optional[bool] = None,
              defaults: Optional[List[dict]] = None,
              retain_default_reviewers: Optional[bool] = None,
-             minimum_up_votes: Optional[str] = None
+             minimum_up_votes: Optional[str] = None,
+             email_flags: Optional[dict] = None,
+             workflow: Optional[int] = None
              ) -> dict:
         """
         Edit a project.
@@ -302,6 +318,12 @@ class Projects:
             minimum_up_votes (Optional[str]):
                 Minimum number of up votes required.
 
+            email_flags (Optional[dict]):
+                tbd
+
+            workflow (Optional[int]):
+                tbd
+
         Returns:
             dict: json response.
         """
@@ -351,6 +373,12 @@ class Projects:
 
         if minimum_up_votes:
             data['minimumUpVotes'] = minimum_up_votes
+
+        if email_flags:
+            data['emailFlags'] = email_flags
+
+        if workflow:
+            data['workflow'] = workflow
 
         response = self.swarm._request(
             'PATCH',
