@@ -132,7 +132,7 @@ class Workflows:
         if description:
             data['description'] = description
 
-        if shared:
+        if shared is not None:
             data['shared'] = shared
 
         if owners:
@@ -149,6 +149,10 @@ class Workflows:
 
         if counted_votes:
             data['counted_votes'] = counted_votes
+
+        version = self.swarm.get_version()
+        if 11 in version['apiVersions']:
+            return self.swarm._request('POST', 'workflows', json=data)
 
         return self.swarm._request('POST', 'workflows', data=data)
 
@@ -218,7 +222,7 @@ class Workflows:
         if description:
             data['description'] = description
 
-        if shared:
+        if shared is not None:
             data['shared'] = shared
 
         if owners:
@@ -325,7 +329,7 @@ class Workflows:
         if description:
             data['description'] = description
 
-        if shared:
+        if shared is not None:
             data['shared'] = shared
 
         if owners:
