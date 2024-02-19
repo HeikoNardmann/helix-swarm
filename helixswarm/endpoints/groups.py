@@ -107,7 +107,14 @@ class Groups:
                email_address: Optional[str] = None,
                notify_reviews: Optional[bool] = None,
                notify_commits: Optional[bool] = None,
-               use_mailing_list: Optional[bool] = None
+               use_mailing_list: Optional[bool] = None,
+               max_results: Optional[int] = None,
+               max_scan_rows: Optional[int] = None,
+               max_lock_time: Optional[int] = None,
+               max_open_files: Optional[int] = None,
+               max_memory: Optional[int] = None,
+               timeout: Optional[int] = None,
+               password_timeout: Optional[int] = None
                ) -> dict:
         """
         Create a new group.
@@ -147,6 +154,20 @@ class Groups:
                 Whether to use the configured email address or expand individual
                 members addresses.
 
+            max_results: Optional[int]:
+
+            max_scan_rows: Optional[int]:
+
+            max_lock_time: Optional[int]:
+
+            max_open_files: Optional[int]:
+
+            max_memory: Optional[int]:
+
+            timeout: Optional[int]:
+
+            password_timeout: Optional[int]:
+
         Returns:
             dict: json response.
         """
@@ -154,7 +175,7 @@ class Groups:
 
         data['Group'] = identifier
 
-        if not (users and owners and subgroups):
+        if not (users or owners or subgroups):
             raise SwarmError('At least one of users, owners, or subgroups is required')
 
         if users:
@@ -183,6 +204,31 @@ class Groups:
 
         if use_mailing_list:
             data['config[useMailingList]'] = use_mailing_list
+
+        if max_results:
+            data['MaxResults'] = max_results
+
+        if max_scan_rows:
+            data['MaxScanRows'] = max_scan_rows
+
+        if max_lock_time:
+            data['MaxLockTime'] = max_lock_time
+
+        if max_open_files:
+            data['MaxOpenFiles'] = max_open_files
+
+        if max_memory:
+            data['MaxMemory'] = max_memory
+
+        if timeout:
+            data['Timeout'] = timeout
+
+        if password_timeout:
+            data['PasswordTimeout'] = password_timeout
+
+        version = self.swarm.get_version()
+        if 11 in version['apiVersions']:
+            return self.swarm._request('POST', 'groups', json=data)
 
         return self.swarm._request('POST', 'groups', data=data)
 
