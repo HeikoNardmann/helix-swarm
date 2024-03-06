@@ -380,12 +380,20 @@ class Projects:
         if workflow:
             data['workflow'] = workflow
 
+        version = self.swarm.get_version()
+        if 11 in version['apiVersions']:
+            response = self.swarm._request(
+                'PATCH',
+                'projects/{}'.format(identifier),
+                json=data
+            )
+            return response
+
         response = self.swarm._request(
             'PATCH',
             'projects/{}'.format(identifier),
             data=data
         )
-
         return response
 
     def delete(self, identifier: str) -> dict:
