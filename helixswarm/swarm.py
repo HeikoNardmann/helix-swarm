@@ -13,6 +13,7 @@ from helixswarm.endpoints.groups import Groups
 from helixswarm.endpoints.projects import Projects
 from helixswarm.endpoints.reviews import Reviews
 from helixswarm.endpoints.servers import Servers
+from helixswarm.endpoints.tests import Tests
 from helixswarm.endpoints.users import Users
 from helixswarm.endpoints.workflows import Workflows
 from helixswarm.exceptions import (
@@ -39,6 +40,7 @@ class Swarm(ABC):
         self.servers = Servers(self)
         self.users = Users(self)
         self.workflows = Workflows(self)
+        self.tests = Tests(self)
 
     @staticmethod
     def _get_host_and_api_version(url: str) -> Tuple[str, str]:
